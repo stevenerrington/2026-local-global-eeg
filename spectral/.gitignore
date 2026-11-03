@@ -1,0 +1,5 @@
+derivatives/*
+!derivatives/.gitkeep
+figures/*.png
+figures/*.pdf
+__pycache__/

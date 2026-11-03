@@ -1,0 +1,29 @@
+# conda only provides Python; everything else comes from pip wheels (no slow solve).
+# PyMC is optional here: add it later with `pip install pymc` when you reach the stats stage.
+name: lg-eeg
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - mne>=1.8
+      - mne-bids
+      - python-picard
+      - numpy
+      - scipy
+      - pandas
+      - scikit-learn
+      - matplotlib
+      - seaborn
+      - h5py
+      - pingouin
+      - statsmodels
+      - jupyterlab
+      - ipykernel
+      - packaging
+      - nbformat
+      - nbclient
+      - openneuro-py
+      - autoreject
+      - mne-icalabel

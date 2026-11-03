@@ -1,0 +1,65 @@
+# MyST project configuration for the local–global EEG project site.
+# Build locally:   myst start      (live preview at http://localhost:3000)
+# Static site:     myst build --html   (output in _build/html)
+# Docs: https://mystmd.org/guide
+version: 1
+project:
+  id: 2026-local-global-eeg
+  title: Hierarchical auditory predictions in the local–global paradigm
+  subtitle: EEG, learner models, source localisation and DCM (Rutiku et al. 2024 dataset, n = 15)
+  short_title: Local–global EEG
+  description: Analysis code, results and validation for a re-analysis of the open local–global EEG dataset ds005429.
+  keywords: [EEG, mismatch negativity, P3b, local–global, predictive coding, Bayesian learner, DCM]
+  authors:
+    - name: Steven Errington
+      affiliations:
+        - Newcastle University
+      corresponding: true
+      email: steven.errington@outlook.com
+    # - name: Collaborator Name
+    #   affiliations: [Newcastle University]
+  date: 2026-11-03
+  license: CC-BY-4.0
+  numbering:
+    headings: false
+    figure: true
+    equation: true
+  # Keep raw data, derivatives, drafts and scratch folders out of the site
+  exclude:
+    - data/**
+    - derivatives/**
+    - spectral/**
+    - docs/**
+    - Claude outputs/**
+    - _build/**
+    - notebooks/results_analyses.ipynb
+  abbreviations:
+    LS: local standard (5th sound repeats)
+    LD: local deviant (5th sound changes)
+    GS: global standard (the block's frequent quintlet)
+    GD: global deviant (the block's rare quintlet)
+    MMN: mismatch negativity
+    PXP: protected exceedance probability
+    BOR: Bayesian omnibus risk
+    DCM: dynamic causal modelling
+    ROI: region of interest
+  toc:
+    - file: index.md
+    - title: Results
+      children:
+        - file: site/results-erps.md
+        - file: site/results-models.md
+        - file: site/results-source.md
+        - file: site/results-dcm.md
+    - file: site/methods.md
+    - file: site/validation.md
+    - file: notebooks/results_analyses_executed.ipynb
+      title: Analysis notebook
+    - file: site/pipeline.md
+    - file: site/collaborating.md
+site:
+  template: book-theme
+  title: Local–global EEG
+  options:
+    logo_text: Local–global EEG
+    hide_authors: false
