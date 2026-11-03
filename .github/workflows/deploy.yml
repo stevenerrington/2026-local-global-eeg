@@ -1,0 +1,38 @@
+# Builds the MyST site (myst.yml) and publishes it to GitHub Pages on every push to main.
+# One-time setup on GitHub: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+name: MyST site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:            # also allows a manual rebuild from the Actions tab
+env:
+  BASE_URL: /${{ github.event.repository.name }}
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install MyST
+        run: npm install -g mystmd
+      - name: Build HTML
+        run: myst build --html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_build/html
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

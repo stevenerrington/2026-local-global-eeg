@@ -5,3 +5,11 @@ figures/*.pdf
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
+# figures shown on the MyST site (everything else in figures/ stays local)
+!figures/Figure1.png
+!figures/Figure2_schematic.png
+!figures/Figure2_results.png
+!figures/Figure2_recovery.png
+!figures/Figure3.png
+!figures/Figure_DCM_windows.png
+_build/
